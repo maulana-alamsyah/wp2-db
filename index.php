@@ -1,46 +1,34 @@
 <?php
-include('connection.php');
+include('koneksi.php');
+
+$sql = "select * from mahasiswa";
+$result = pg_query($sql);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
+<h1>Aplikasi Mahasiswa</h1>
 
-<h3>Data Mahasiswa</h3>
-<br>
-<a href="tambah.php">Tambah</a>
-<br>
-
-<table>
+<a href="tambah.php">Tambah</a><br>
+<table border="1">
     <thead>
-        <td>ID</td>
-        <td>NIM</td>
-        <td>NAMA</td>
+        <tr>
+            <th>NIM</th>
+            <th>NAMA</th>
+            <th>KELAS</th>
+        </tr>
     </thead>
     <tbody>
-        <?php
+<?php
+  while($row = pg_fetch_object($result)):
+?>
 
-        $query = "SELECT * FROM mahasiswa;";
+        <tr>
+            <td><?= $row->nim ?></td>
+            <td><?= $row->nama ?></td>
+            <td><?= $row->kelas ?></td>
+        </tr>
 
-        $result = pg_query($query);
-
-        while ($row = pg_fetch_object($result)) {
-            echo "<tr>
-                    <td> $row->id </td>
-                    <td> $row->nim </td>
-                    <td> $row->nama </td>
-                </tr>";
-        }
-
-        ?>
+<?php
+  endwhile;
+?>
     </tbody>
 </table>
-    
-</body>
-</html>
