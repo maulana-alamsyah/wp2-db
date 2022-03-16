@@ -1,8 +1,8 @@
 <?php
 $conn_str = "host=john.db.elephantsql.com" .
     "port=5432 " .
-    "user=rzplgiim " .
-    "dbname=rzplgiim " .
+    "user=rzplgiim" .
+    "dbname=rzplgiim" .
     "password=4xHyo6ImN0fpiWeTeah1B0JKfgDunNgb";
 $conn = pg_connect($conn_str);
 
